@@ -2,7 +2,9 @@
 #define DEMO_H
 
 #include <QWidget>
+#include <QMessageBox>
 #include "Network/network.h" // 添加网络接口类
+#include "Network/protocol.h"
 #include <QDebug>
 namespace Ui {
 class Demo;
@@ -18,7 +20,7 @@ public:
 
 private slots:
     void on_sendbtn_clicked();
-
+    void receiveNetDataSlot(const QJsonObject &json);
 private:
     Ui::Demo *ui;
 };

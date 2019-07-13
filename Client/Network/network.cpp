@@ -21,7 +21,7 @@ void Network::initNetwork()
     if(socket == NULL) {
         socket = new QTcpSocket;
     }
-    socket->connectToHost("127.0.0.1", 10001);
+    socket->connectToHost("192.168.43.198", 10086);
     connect(socket, SIGNAL(connected()), this, SLOT(connectedSlot()));
     qDebug() << "initNetwork";
 }
@@ -46,7 +46,9 @@ void Network::readDataSlot()
     while (socket->bytesAvailable()) {
         data.append(socket->readAll());
     }
-    qDebug() << "服务器反馈：" << data;
+    qDebug() << "服务器反馈：" << data.data();
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(data);
+    emit SendDataToWindow(jsonDoc.object()); // 收到数据，自动发给前台
 }
 
 void Network::disconnectSlot()

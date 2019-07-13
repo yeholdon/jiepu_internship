@@ -5,6 +5,8 @@
  */
 #include <QObject>
 #include <QTcpSocket>
+#include <QJsonObject>
+#include <QJsonDocument>
 
 class Network : public QObject
 {
@@ -22,7 +24,8 @@ public:
     bool sendNetData(const QByteArray &data);
 
 signals:
-
+    // 参数带json对象比较好
+    void SendDataToWindow(const QJsonObject &json);
 public slots:
     void connectedSlot();
     void readDataSlot();

@@ -11,7 +11,6 @@ Animation::Animation(QWidget *parent)
     initButtonGroup();
     initLayout();
 
-
 }
 
 Animation::~Animation()
